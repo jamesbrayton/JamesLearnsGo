@@ -8,8 +8,8 @@ import (
 // which is a slice of strings
 type deck []string
 
-func (d deck) print() {
-	for i, card := range d {
+func (deckInstance deck) print() {
+	for i, card := range deckInstance {
 		fmt.Println(i, card)
 	}
 }
