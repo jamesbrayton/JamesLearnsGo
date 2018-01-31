@@ -33,3 +33,8 @@ func (thisDeck deck) print() {
 		fmt.Println(i, card)
 	}
 }
+
+// Returns 2 decks.  The first deck is the first set of values up to the hand size, the second is what remains in the deck.
+func deal(d deck, handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
+}
