@@ -13,9 +13,9 @@ func main() {
 	// fmt.Println([]byte(greeting))
 
 	// cards := newDeck()
-	// cards.saveToFile("my_cards")
+	// cards.saveToFile("my_cards.dat")
 
-	// secondCards := newDeckFromFile("my_cards")
+	// secondCards := newDeckFromFile("my_cards.dat")
 
 	// secondCards.print()
 
