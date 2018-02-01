@@ -12,6 +12,14 @@ func main() {
 	// greeting := "Hi there!"
 	// fmt.Println([]byte(greeting))
 
+	// cards := newDeck()
+	// cards.saveToFile("my_cards")
+
+	// secondCards := newDeckFromFile("my_cards")
+
+	// secondCards.print()
+
 	cards := newDeck()
-	cards.saveToFile("my_cards")
+	cards.shuffle()
+	cards.print()
 }
