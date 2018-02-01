@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"strings"
 )
 
 // Create a new type of deck
@@ -37,4 +39,19 @@ func (thisDeck deck) print() {
 // Returns 2 decks.  The first deck is the first set of values up to the hand size, the second is what remains in the deck.
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+// Returns the deck as a single comma delimitted string.
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
+}
+
+// Returns the deck as a byte slice.
+func (d deck) toByteSlice() []byte {
+	return []byte(d.toString())
+}
+
+// Attempts to write the deck to the file system.
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, d.toByteSlice(), 0666)
 }
