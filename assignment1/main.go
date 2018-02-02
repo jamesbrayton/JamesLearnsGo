@@ -31,7 +31,7 @@ import (
 // Main function
 func main() {
 	// slice of ints containing 1 though 10
-	ints := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	ints := generateSlice(10)
 
 	// for loop iteration of the slice.
 	for i := range ints {
@@ -42,4 +42,15 @@ func main() {
 			fmt.Println(ints[i], "is odd")
 		}
 	}
+}
+
+// Function for generating a slice of ints
+func generateSlice(numberOfValuesInSlice int) []int {
+	slice := make([]int, numberOfValuesInSlice)
+
+	for i := range slice {
+		slice[i] = i + 1
+	}
+
+	return slice
 }
