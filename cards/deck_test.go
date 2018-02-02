@@ -33,6 +33,18 @@ func TestLastCardInNewDeckIsKingOfClubs(t *testing.T) {
 	}
 }
 
+// Test that shuffle shuffles a deck.
 func TestShuffleDeck(t *testing.T) {
+	// Create 2 new decks
+	d1, d2 := newDeck(), newDeck()
+
+	// Assert the ordering of d1 and d2 are the same.
+	for i := range d1 {
+		if d1[i] != d2[i] {
+			t.Errorf("Expected card '%v', but got %v", d1[i], d2[i])
+		}
+	}
+
+	// Shuffle the first deck.
 
 }
