@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
 // Verify that we have 52 cards in our deck.
 func TestNewDeckHasCorrectNumberOfCards(t *testing.T) {
@@ -92,6 +95,37 @@ func TestToByteSlice(t *testing.T) {
 			t.Errorf("Expected '%v', but got %v", testByteSliceShouldBe[i], testDeckAsByteSlice[i])
 		}
 	}
+}
+
+// Test that we can save and load a deck from a file
+func TestSaveAndLoadToAndFromAFile(t *testing.T) {
+	// filename for test decks
+	testDeckFileName := "_testDeck.dat"
+
+	// check to see if any files remained from previous tests and delete them.
+	os.Remove(testDeckFileName)
+
+	// Create a new test deck
+	testDeck := newDeck()
+
+	// Let's shuffle the deck to ensure that what we load later is the correct deck.
+	testDeck.shuffle()
+
+	// Save the deck to the file system
+	testDeck.saveToFile(testDeckFileName)
+
+	// Create a new deck from the saved deck.
+	loadedDeck := newDeckFromFile(testDeckFileName)
+
+	// Check card by card to make sure the decks are the same.
+	for i := range loadedDeck {
+		if loadedDeck[i] != testDeck[i] {
+			t.Errorf("Expected card %v, but got %v", testDeck[i], loadedDeck[i])
+		}
+	}
+
+	// Delete the test deck that was saved to the file system.
+	os.Remove(testDeckFileName)
 }
 
 // Test that shuffle shuffles a deck.
