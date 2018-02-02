@@ -35,16 +35,23 @@ func TestLastCardInNewDeckIsKingOfClubs(t *testing.T) {
 
 // Test that shuffle shuffles a deck.
 func TestShuffleDeck(t *testing.T) {
-	// Create 2 new decks
-	d1, d2 := newDeck(), newDeck()
-
-	// Assert the ordering of d1 and d2 are the same.
-	for i := range d1 {
-		if d1[i] != d2[i] {
-			t.Errorf("Expected card '%v', but got %v", d1[i], d2[i])
-		}
-	}
+	// Create two new decks
+	testDeck, unshuffledTestDeck := newDeck(), newDeck()
 
 	// Shuffle the first deck.
+	testDeck.shuffle()
 
+	// Assert at least one card in the ordering does not match (shuffled)
+	for i := range testDeck {
+		// Compare the two decks card by card.
+		if testDeck[i] != unshuffledTestDeck[i] {
+			// Found a card that didn't match, so break out of the loop.
+			break
+		}
+
+		// Check if we have got to the end of the decks without finding a mismatch.
+		if i == len(testDeck)-1 {
+			t.Errorf("Expected at least one different card between the decks.")
+		}
+	}
 }
