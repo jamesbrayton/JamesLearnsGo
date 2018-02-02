@@ -57,8 +57,7 @@ func TestDeal(t *testing.T) {
 
 // Test the to string function of a deck
 func TestToString(t *testing.T) {
-	// Create a test deck to test with.
-	// Overwrite the value in the test deck to only two cards for easier testing.
+	// Create a test deck to test with only two cards for easier testing.
 	// (I'm too lazt right now to type out all 52 cards for testing.)
 	testDeck := deck{"Ace of Spades", "Two of Diamonds"}
 
@@ -69,6 +68,29 @@ func TestToString(t *testing.T) {
 
 	if testDeckAsString != testStringShouldBe {
 		t.Errorf("Expected '%v', but got %v", testStringShouldBe, testDeckAsString)
+	}
+}
+
+func TestToByteSlice(t *testing.T) {
+	// Returns the deck as a byte slice.
+	// func (d deck) toByteSlice() []byte {
+	// 	return []byte(d.toString())
+	// }
+
+	// Create a test deck to test with only two cards for easier testing.
+	// (I'm too lazt right now to type out all 52 cards for testing.)
+	testDeck := deck{"Ace of Spades", "Two of Diamonds"}
+
+	testByteSliceShouldBe := []byte("Ace of Spades,Two of Diamonds")
+
+	// Call toString() on the deck.
+	testDeckAsByteSlice := testDeck.toByteSlice()
+
+	// Assert that the byte slices are equal.
+	for i := range testDeckAsByteSlice {
+		if testDeckAsByteSlice[i] != testByteSliceShouldBe[i] {
+			t.Errorf("Expected '%v', but got %v", testByteSliceShouldBe[i], testDeckAsByteSlice[i])
+		}
 	}
 }
 
