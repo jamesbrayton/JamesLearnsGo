@@ -2,17 +2,7 @@ package main
 
 import "testing"
 
-// Function for generating a slice of ints
-// func generateSlice(numberOfValuesInSlice int) []int {
-// 	slice := make([]int, numberOfValuesInSlice)
-
-// 	for i := range slice {
-// 		slice[i] = i + 1
-// 	}
-
-// 	return slice
-// }
-
+// Test the generate slice function
 func TestGenerateSlice(t *testing.T) {
 	// number of values in slice to generate.
 	sizeOfGeneratedSlice := 5
