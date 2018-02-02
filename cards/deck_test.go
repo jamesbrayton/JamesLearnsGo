@@ -33,6 +33,45 @@ func TestLastCardInNewDeckIsKingOfClubs(t *testing.T) {
 	}
 }
 
+// Test the deal function on a deck of cards.
+func TestDeal(t *testing.T) {
+	// Get a new deck to test with.
+	testDeck := newDeck()
+
+	// Pick 7 cards to be the handsize.
+	handSize := 7
+
+	// Deal a new hand from the test deck.
+	testHand, testDeck := deal(testDeck, handSize)
+
+	// Assert that the test hand is the correct hand size.
+	if len(testHand) != handSize {
+		t.Errorf("Expected '%v' number of cards in the hand, but got %v", handSize, len(testHand))
+	}
+
+	// Verify that the testdeck contains the correct number of cards remaining.
+	if len(testDeck) != (52 - handSize) {
+		t.Errorf("Expected '%v' number of cards left in the deck, but got %v", (52 - handSize), len(testDeck))
+	}
+}
+
+// Test the to string function of a deck
+func TestToString(t *testing.T) {
+	// Create a test deck to test with.
+	// Overwrite the value in the test deck to only two cards for easier testing.
+	// (I'm too lazt right now to type out all 52 cards for testing.)
+	testDeck := deck{"Ace of Spades", "Two of Diamonds"}
+
+	testStringShouldBe := "Ace of Spades,Two of Diamonds"
+
+	// Call toString() on the deck.
+	testDeckAsString := testDeck.toString()
+
+	if testDeckAsString != testStringShouldBe {
+		t.Errorf("Expected '%v', but got %v", testStringShouldBe, testDeckAsString)
+	}
+}
+
 // Test that shuffle shuffles a deck.
 func TestShuffleDeck(t *testing.T) {
 	// Create two new decks
