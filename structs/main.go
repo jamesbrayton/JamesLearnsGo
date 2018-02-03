@@ -37,7 +37,19 @@ func main() {
 	fmt.Println(alex)
 
 	// Prints out all the field names plus their values.
-	fmt.Printf("%+v", alex)
+	fmt.Printf("%+v\n", alex)
 
-	fmt.Printf("%+v", jim)
+	jim.print()
+
+	jim.updateName("Jimbo")
+
+	jim.print()
+}
+
+func (p person) updateName(newFirstName string) {
+	p.firstName = newFirstName
+}
+
+func (p person) print() {
+	fmt.Printf("%+v\n", p)
 }
