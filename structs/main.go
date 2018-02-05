@@ -42,16 +42,15 @@ func main() {
 	// Use our new print function.
 	jim.print()
 
-	// Create a pointer to the jim object.
-	jimPointer := &jim
-
 	// NOTES:
 	// varaiable - Give me the value this variable has at its memory address. (value)
 	// &variable - Give me the memory address of the value this variable is pointing at (reference).
 	// *pointer - Give me the value this memory address is pointing at (pointer).
+	// In other words, use *address to turn an address into a value
+	// use &value to turn a value into an address
 
 	// Update jim using the pointer.
-	jimPointer.updateFirstName("Jimbo")
+	jim.updateFirstName("Jimbo")
 
 	jim.print()
 }
