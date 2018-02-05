@@ -2,6 +2,12 @@ package main
 
 import "fmt"
 
+// Bot interface.
+// NOTE: Interfaces in Go are not generic types - in fact Go
+//     famously does not have support for generic types.
+// NOTE2: In Go, interfaces are implicit.
+// NOTE3: Interfaces are a contract to help us manage types.  Also,
+//     remember: garbage in -> garbage out.
 type bot interface {
 	getGreeting() string
 }
