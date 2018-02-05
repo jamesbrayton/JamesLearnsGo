@@ -37,4 +37,24 @@ func main() {
 
 	// print out the colors3 map to see that white was deleted.
 	fmt.Println(colors3)
+
+	// Map for iterating example
+	colorsForIterating := map[string]string{
+		"red":   "#ff0000",
+		"green": "#4bf745",
+		"white": "#ffffff",
+	}
+
+	// Print the map.
+	fmt.Println(colorsForIterating)
+
+	// Print the same map using our printMap function.
+	printMap(colorsForIterating)
+}
+
+// A function to demonstate iterating through a map.
+func printMap(colors map[string]string) {
+	for color, hex := range colors {
+		fmt.Println("Hex code for", color, "is", hex)
+	}
 }
