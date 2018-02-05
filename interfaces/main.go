@@ -22,6 +22,8 @@ func main() {
 	printGreeting(sb)
 }
 
+// print greeting from the interface.  This will call the get greeting function
+// for the specific type that implements getGreeting()
 func printGreeting(b bot) {
 	fmt.Println(b.getGreeting())
 }
