@@ -53,11 +53,25 @@ func main() {
 	jim.updateFirstName("Jimbo")
 
 	jim.print()
+
+	// Quick example of pass by reference// Example slice
+	mySlice := []string{"Hi", "There", "How", "Are", "You"}
+
+	// Call the update function.
+	updateSlice(mySlice)
+
+	// Output the result
+	fmt.Println(mySlice)
 }
 
 // Update name on the person using pointers.
 func (pointerToPerson *person) updateFirstName(newFirstName string) {
 	(*pointerToPerson).firstName = newFirstName
+}
+
+// Update function
+func updateSlice(s []string) {
+	s[0] = "Bye"
 }
 
 // Print the person object formatted to include all possible value names.

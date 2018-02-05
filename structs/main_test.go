@@ -1,6 +1,8 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 // Test the update first name function
 func TestUpdateFirstName(t *testing.T) {
@@ -26,5 +28,19 @@ func TestUpdateFirstName(t *testing.T) {
 	// Assert that the first name of the test person was updated.
 	if testPerson.firstName != "Testy" {
 		t.Errorf("Expected %v, but got %v", "Testy", testPerson.firstName)
+	}
+}
+
+// Tests the update slice function and helps prove the pass by reference behavior
+func TestUpdateSlice(t *testing.T) {
+	// Quick example of pass by reference// Example slice
+	mySlice := []string{"Hi", "There", "How", "Are", "You"}
+
+	// Call the update function.
+	updateSlice(mySlice)
+
+	// Assert the before so that we can assert the after.
+	if mySlice[0] != "Bye" {
+		t.Errorf("Expected %v, but got %v", "Bye", mySlice[0])
 	}
 }
