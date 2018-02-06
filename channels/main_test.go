@@ -13,7 +13,7 @@ type MockHttpClient struct {
 }
 
 // Function for overriding Get behavior on an http.client in order to test.
-func (m MockHttpClient) Get(url string) (resp *http.Response, err error) {
+func (MockHttpClient) Get(url string) (resp *http.Response, err error) {
 	// Create failure scenario to test both positive and negative behavior.
 	if url == "https://should.fail" {
 		return new(http.Response), errors.New("no mi gusta")
