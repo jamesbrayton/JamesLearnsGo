@@ -21,7 +21,7 @@ func main() {
 	links := getLinks()
 
 	for _, link := range links {
-		fmt.Printf("%v", checkLink(new(http.Client), link))
+		fmt.Println(checkLink(new(http.Client), link))
 	}
 }
 

@@ -59,6 +59,7 @@ func TestCheckLinkFail(t *testing.T) {
 
 // Test the getLinks() function.
 func TestGetLinks(t *testing.T) {
+	// Expected links we should get back.
 	expectedLinks := []string{
 		"https://google.com",
 		"https://facebook.com",
@@ -67,7 +68,9 @@ func TestGetLinks(t *testing.T) {
 		"https://amazon.com",
 	}
 
+	// get the links and store what we get back.
 	actualLinks := getLinks()
 
+	// Compare and assert the result.
 	assert.Equal(t, expectedLinks, actualLinks)
 }
