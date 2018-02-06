@@ -32,11 +32,11 @@ func TestCheckLinkSucceeds(t *testing.T) {
 	testLink := "https://yourMom.com"
 
 	// Call the code we are testing.
-	success, message := checkLink(mockClient, testLink)
+	resp := checkLink(mockClient, testLink)
 
 	// Assert the expectations we met.
-	assert.True(t, success)
-	assert.Contains(t, message, testLink)
+	assert.True(t, resp.success)
+	assert.Contains(t, resp.message, testLink)
 }
 
 // Tests the check link function under a failure scenario.  The function returns a
@@ -50,11 +50,11 @@ func TestCheckLinkFail(t *testing.T) {
 	testLink := "https://should.fail"
 
 	// Call the code we are testing.
-	success, message := checkLink(mockClient, testLink)
+	resp := checkLink(mockClient, testLink)
 
 	// Assert the expectations we met.
-	assert.False(t, success)
-	assert.Contains(t, message, testLink)
+	assert.False(t, resp.success)
+	assert.Contains(t, resp.message, testLink)
 }
 
 // Test the getLinks() function.

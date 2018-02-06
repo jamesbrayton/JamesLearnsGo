@@ -10,6 +10,7 @@ type httpClient interface {
 	Get(url string) (*http.Response, error)
 }
 
+// Struct for holding checkLink response data.
 type checkResponse struct {
 	success bool
 	message string
