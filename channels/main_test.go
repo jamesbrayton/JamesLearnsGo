@@ -28,11 +28,18 @@ func TestCheckLinkSucceeds(t *testing.T) {
 	// Mock http client.
 	mockClient := MockHttpClient{}
 
+	// Make a channel to allow inter-goroutine communication
+	// We are using a buffered channel to avoid deadlocks.
+	c := make(chan string, 1)
+
 	// Link to test with the mock client.
-	testLink := "https://yourMom.com"
+	testLink := "https://yourmom.com"
 
 	// Call the code we are testing.
-	resp := checkLink(mockClient, testLink)
+	resp := checkLink(mockClient, testLink, c)
+
+	// Close the channel.
+	close(c)
 
 	// Assert the expectations we met.
 	assert.True(t, resp.success)
@@ -46,11 +53,18 @@ func TestCheckLinkFail(t *testing.T) {
 	// Mock http client.
 	mockClient := MockHttpClient{}
 
+	// Make a channel to allow inter-goroutine communication
+	// We are using a buffered channel to avoid deadlocks.
+	c := make(chan string, 1)
+
 	// Link to test with the mock client.
 	testLink := "https://should.fail"
 
 	// Call the code we are testing.
-	resp := checkLink(mockClient, testLink)
+	resp := checkLink(mockClient, testLink, c)
+
+	// Close the channel.
+	close(c)
 
 	// Assert the expectations we met.
 	assert.False(t, resp.success)
