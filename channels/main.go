@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"sync"
 )
 
 // Interface for defining an http client.  This is used for testing later.
@@ -20,9 +21,27 @@ type checkResponse struct {
 func main() {
 	links := getLinks()
 
+	// Create a waitgroup to ensure all go routines finish before exiting the program.
+	var wg sync.WaitGroup
+
+	// For loop to check all the links.
 	for _, link := range links {
-		fmt.Println(checkLink(new(http.Client), link))
+		// Increment the waitgroup counter.
+		wg.Add(1)
+
+		// Launch a goroutine to check the link and write the response.
+		go func(link string) {
+
+			// Decerment the counter when the goroutine completes.
+			defer wg.Done()
+
+			// Make the actual call to check link and print the response.
+			fmt.Println(checkLink(new(http.Client), link))
+		}(link)
 	}
+
+	// Wait for all the goroutines to complete.
+	wg.Wait()
 }
 
 // Check link function that returns a boolean value indicating the success of the call
